@@ -5,98 +5,343 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>포크레인 RC 조종 가이드 | 노고 아카데미</title>
   <style>
+    :root {
+      --black: #111111;
+      --yellow: #F5C518;
+      --yellow-light: #FFFBEA;
+      --white: #ffffff;
+      --bg: #f2f2f2;
+      --text: #1a1a1a;
+      --muted: #666;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 480px;
+      margin: 0 auto;
     }
 
+    /* ── Header ── */
     header {
-      background: #1a1a1a;
-      color: white;
-      padding: 24px 20px 20px;
+      background: var(--black);
+      color: var(--white);
+      padding: 0 0 24px;
+    }
+
+    .stripe {
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--yellow) 0px, var(--yellow) 22px,
+        var(--black) 22px, var(--black) 32px
+      );
+    }
+
+    .header-inner { padding: 20px 20px 0; }
+
+    .header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    header h1 em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    header .subtitle {
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.7;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .brand {
+      padding-top: 14px;
+      font-size: 10px;
+      color: #555;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #999;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 22px 16px 8px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #ddd;
+    }
+
+    /* ── Warning card ── */
+    .warning-card {
+      margin: 16px 16px 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid var(--yellow);
+    }
+
+    .warning-card-head {
+      background: var(--yellow);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .warning-card-head h2 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .warning-card-body {
+      background: var(--yellow-light);
+      padding: 16px 16px;
+    }
+
+    .warning-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .warning-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .w-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--black);
+      color: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* ── Stop card ── */
+    .stop-card {
+      background: var(--black);
+      margin: 0 16px 12px;
+      border-radius: 14px;
+      padding: 18px 18px;
+    }
+
+    .stop-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+
+    .stop-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #ccc;
+      margin-bottom: 6px;
+    }
+
+    .stop-card .sub {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stop-action {
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 10px;
       text-align: center;
     }
 
-    header .emoji { font-size: 40px; display: block; margin-bottom: 8px; }
-    header h1 { font-size: 20px; font-weight: 700; }
-    header p { font-size: 13px; color: #aaa; margin-top: 4px; }
-
-    .warning {
-      background: #fff3cd;
-      border-left: 4px solid #f59e0b;
-      margin: 16px;
-      padding: 14px 16px;
-      border-radius: 8px;
-    }
-
-    .warning h2 { font-size: 14px; font-weight: 700; color: #b45309; margin-bottom: 8px; }
-    .warning ul { padding-left: 16px; }
-    .warning li { font-size: 13px; line-height: 1.8; color: #78350f; }
-
-    .section-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #888;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 16px 16px 8px;
-    }
-
-    .card {
-      background: white;
+    /* ── Tutorial card ── */
+    .tutorial-card {
+      background: var(--white);
       margin: 0 16px 12px;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
 
-    .card-header {
+    .tutorial-head {
+      background: var(--black);
+      padding: 14px 16px;
       display: flex;
       align-items: center;
+      gap: 10px;
+    }
+
+    .tutorial-head h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .tutorial-note {
+      background: #1c1c1c;
+      color: #888;
+      font-size: 11px;
+      padding: 8px 16px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .steps {
+      padding: 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
       gap: 12px;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .step-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.5;
+      padding-top: 5px;
+    }
+
+    /* ── Ops note ── */
+    .ops-note {
+      background: var(--yellow-light);
+      border-left: 3px solid var(--yellow);
+      margin: 0 16px 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #78350f;
+      line-height: 1.6;
+    }
+
+    /* ── Operation cards ── */
+    .card {
+      background: var(--white);
+      margin: 0 16px 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 14px 16px;
       border-bottom: 1px solid #f0f0f0;
     }
 
+    .card-head h3 { font-size: 15px; font-weight: 700; }
+
     .badge {
-      background: #4ade80;
-      color: #14532d;
       font-size: 11px;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 20px;
       white-space: nowrap;
     }
 
-    .badge.red { background: #fca5a5; color: #7f1d1d; }
-    .badge.blue { background: #93c5fd; color: #1e3a5f; }
-    .badge.yellow { background: #fde68a; color: #78350f; }
+    .b-yellow { background: var(--yellow); color: var(--black); }
+    .b-blue   { background: #bfdbfe; color: #1e3a5f; }
+    .b-green  { background: #bbf7d0; color: #14532d; }
 
-    .card-header h3 { font-size: 15px; font-weight: 700; }
-
-    .video-area {
+    /* ── Video area ── */
+    .video-wrap {
       background: #1a1a1a;
       aspect-ratio: 16/9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      font-size: 13px;
-      gap: 8px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .video-area video {
+    .video-wrap video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .video-area .placeholder-icon { font-size: 32px; }
+    .video-ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    /* 영상이 있을 때 플레이스홀더 숨김 */
+    .video-wrap.has-video .video-ph { display: none; }
+
+    .video-ph .ph-icon  { font-size: 36px; }
+    .video-ph .ph-title { font-size: 13px; font-weight: 600; color: #777; }
+    .video-ph .ph-sub   { font-size: 11px; color: #555; text-align: center; padding: 0 20px; }
 
     .card-body {
       padding: 14px 16px;
@@ -108,113 +353,273 @@
       color: #444;
     }
 
-    .card-body .tip {
+    .tip {
       margin-top: 10px;
-      background: #f0fdf4;
-      border-left: 3px solid #4ade80;
+      background: var(--yellow-light);
+      border-left: 3px solid var(--yellow);
       padding: 8px 12px;
       border-radius: 4px;
       font-size: 12px;
-      color: #166534;
+      color: #78350f;
     }
 
+    /* ── Don't card ── */
+    .dont-card {
+      background: var(--white);
+      margin: 0 16px 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-left: 4px solid #e53e3e;
+    }
+
+    .dont-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dont-head h3 { font-size: 15px; font-weight: 700; color: #c53030; }
+
+    .dont-list {
+      list-style: none;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dont-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .x { color: #e53e3e; font-weight: 800; flex-shrink: 0; }
+
+    /* ── Footer ── */
     footer {
+      background: var(--black);
+      padding: 28px 20px;
+      margin-top: 8px;
       text-align: center;
-      padding: 24px 16px;
-      font-size: 12px;
-      color: #aaa;
+    }
+
+    .footer-main {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .footer-sub {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    .footer-brand {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #2a2a2a;
+      font-size: 10px;
+      color: #555;
+      letter-spacing: 1.5px;
     }
   </style>
 </head>
 <body>
 
+<!-- ── 1. HEADER ── -->
 <header>
-  <span class="emoji">🚧</span>
-  <h1>포크레인 RC 조종 가이드</h1>
-  <p>노고 아카데미 | NOGGO ACADEMY</p>
+  <div class="stripe"></div>
+  <div class="header-inner">
+    <div class="header-tag">🚧 RC 체험 안내</div>
+    <h1>포크레인 RC<br><em>조종 가이드</em></h1>
+    <p class="subtitle">
+      처음 오신 분도 1분이면 조작할 수 있어요.<br>
+      천천히 조작하고, 어려우면 바로 직원에게 알려주세요.
+    </p>
+    <div class="brand">노고 아카데미 | NOGO ACADEMY</div>
+  </div>
 </header>
 
-<div class="warning">
-  <h2>⚠️ 체험 전 꼭 읽어주세요</h2>
-  <ul>
-    <li>조종기를 너무 세게 당기거나 꺾지 마세요</li>
-    <li>포크레인이 멈추면 직원에게 알려주세요 (억지로 조작 금지)</li>
-    <li>모래 이외의 장소로 이동 금지</li>
-    <li>모르는 버튼은 직원에게 문의해주세요</li>
-  </ul>
+<!-- ── 2. 핵심 주의사항 ── -->
+<div class="section-label">주의사항</div>
+
+<div class="warning-card">
+  <div class="warning-card-head">
+    <span style="font-size:22px;">🚨</span>
+    <h2>이것만은 꼭 지켜주세요</h2>
+  </div>
+  <div class="warning-card-body">
+    <ul class="warning-list">
+      <li>
+        <span class="w-num">1</span>
+        <span>포크레인이 멈췄을 때 억지로 조작하지 않기</span>
+      </li>
+      <li>
+        <span class="w-num">2</span>
+        <span>조종기를 세게 꺾거나 강하게 누르지 않기</span>
+      </li>
+      <li>
+        <span class="w-num">3</span>
+        <span>모래 체험 공간 밖으로 이동하지 않기</span>
+      </li>
+    </ul>
+  </div>
 </div>
 
-<div class="section-title">조종 방법</div>
+<!-- ── 3. 멈췄을 때 대처법 ── -->
+<div class="stop-card">
+  <div class="stop-title">🛑 포크레인이 멈췄나요?</div>
+  <p>억지로 계속 조작하지 말고,<br>손을 들어 직원에게 알려주세요.</p>
+  <p class="sub">배터리, 연결 상태, 모래 끼임 등을 바로 확인해드릴게요.</p>
+  <div class="stop-action">✋ 손들어 직원 부르기</div>
+</div>
 
-<!-- 카드 1 -->
+<!-- ── 4. 처음이라면 이것부터 ── -->
+<div class="section-label">첫 체험 순서</div>
+
+<div class="tutorial-card">
+  <div class="tutorial-head">
+    <span style="font-size:18px;">🎯</span>
+    <h3>처음이라면 이것부터 해보세요</h3>
+  </div>
+  <!-- TODO: 실제 조종기 기준으로 체험 순서 수정 필요 -->
+  <div class="tutorial-note">※ 아래 순서는 예시입니다. 실제 조종기 기준으로 업데이트 예정</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">천천히 앞으로 이동해보기</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">팔을 내려 버킷을 모래 가까이에 가져가기</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">버킷으로 모래를 퍼보기</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">원하는 위치로 이동하기</div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-text">버킷을 열어 모래를 쏟아보기</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 5. 조작 방법 ── -->
+<div class="section-label">조작 방법</div>
+
+<!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
+<div class="ops-note">
+  📋 조작법은 실제 조종기 기준으로 업데이트 예정입니다.<br>
+  아래 내용은 예시이며, 매장 조종기 세팅에 맞게 변경될 수 있습니다.
+</div>
+
+<!-- 카드 1: 이동 -->
 <div class="card">
-  <div class="card-header">
-    <span class="badge">왼쪽 조이스틱</span>
+  <div class="card-head">
+    <span class="badge b-yellow">왼쪽 조이스틱</span>
     <h3>포크레인 이동</h3>
   </div>
-  <div class="video-area">
-    <!-- <video src="테스트.mp4" controls playsinline style="width:100%;border-radius:8px;"></video> -->
-    <video src="테스트.mp4" controls controlsList="nodownload" playsinline style="width:100%;border-radius:8px;"></video>
+  <div class="video-wrap has-video">
+    <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 src 교체 -->
+    <video src="테스트.mp4" controls controlsList="nodownload" playsinline
+           onerror="this.closest('.video-wrap').classList.remove('has-video')"></video>
+    <div class="video-ph">
+      <span class="ph-icon">🎬</span>
+      <span class="ph-title">영상 준비 중</span>
+      <span class="ph-sub">조작 영상을 받는 대로 업데이트 예정입니다.</span>
+    </div>
   </div>
+  <!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
   <div class="card-body">
     <p>왼쪽 조이스틱으로 포크레인을 앞뒤좌우로 이동할 수 있어요.</p>
     <div class="tip">천천히 조작할수록 더 정밀하게 움직여요!</div>
   </div>
 </div>
 
-<!-- 카드 2 -->
+<!-- 카드 2: 상체/붐 암 -->
 <div class="card">
-  <div class="card-header">
-    <span class="badge blue">오른쪽 조이스틱</span>
+  <div class="card-head">
+    <span class="badge b-blue">오른쪽 조이스틱</span>
     <h3>상체 회전 / 붐 암 조작</h3>
   </div>
-  <div class="video-area">
-    <!-- <video src="videos/arm.mp4" controls playsinline></video> -->
-    <span class="placeholder-icon">🎬</span>
-    <span>영상 준비 중</span>
+  <div class="video-wrap">
+    <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 아래 video 활성화 + 부모에 has-video 클래스 추가 -->
+    <!-- <video src="videos/arm.mp4" controls controlsList="nodownload" playsinline></video> -->
+    <div class="video-ph">
+      <span class="ph-icon">🎬</span>
+      <span class="ph-title">영상 준비 중</span>
+      <span class="ph-sub">조작 영상을 받는 대로 업데이트 예정입니다.</span>
+    </div>
   </div>
+  <!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
   <div class="card-body">
-    <p>오른쪽 조이스틱으로 포크레인 상체를 회전시키고, 팔(붐 암)을 올리고 내릴 수 있어요.</p>
-    <div class="tip">회전할 때 주변에 사람이 없는지 확인하세요!</div>
+    <p>오른쪽 조이스틱으로 상체를 회전시키고, 팔(붐 암)을 올리고 내릴 수 있어요.</p>
+    <div class="tip">회전할 때 주변에 사람이 없는지 꼭 확인하세요!</div>
   </div>
 </div>
 
-<!-- 카드 3 -->
+<!-- 카드 3: 버킷 -->
 <div class="card">
-  <div class="card-header">
-    <span class="badge yellow">버튼</span>
+  <div class="card-head">
+    <span class="badge b-green">버튼</span>
     <h3>버킷(바가지) 조작</h3>
   </div>
-  <div class="video-area">
-    <!-- <video src="videos/bucket.mp4" controls playsinline></video> -->
-    <span class="placeholder-icon">🎬</span>
-    <span>영상 준비 중</span>
+  <div class="video-wrap">
+    <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 아래 video 활성화 + 부모에 has-video 클래스 추가 -->
+    <!-- <video src="videos/bucket.mp4" controls controlsList="nodownload" playsinline></video> -->
+    <div class="video-ph">
+      <span class="ph-icon">🎬</span>
+      <span class="ph-title">영상 준비 중</span>
+      <span class="ph-sub">조작 영상을 받는 대로 업데이트 예정입니다.</span>
+    </div>
   </div>
+  <!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
   <div class="card-body">
-    <p>버튼으로 버킷(바가지 부분)을 열고 닫을 수 있어요. 모래를 퍼서 원하는 곳에 쏟아보세요!</p>
+    <p>버튼으로 버킷(바가지)을 열고 닫을 수 있어요. 모래를 퍼서 원하는 곳에 쏟아보세요!</p>
     <div class="tip">버킷이 땅에 닿은 상태에서 억지로 올리지 마세요.</div>
   </div>
 </div>
 
-<!-- 카드 4 -->
-<div class="card">
-  <div class="card-header">
-    <span class="badge red">주의</span>
-    <h3>이런 조작은 하지 마세요</h3>
+<!-- ── 6. 하지 말아야 할 조작 ── -->
+<div class="section-label">주의 조작</div>
+
+<div class="dont-card">
+  <div class="dont-head">
+    <span style="font-size:18px;">⚠️</span>
+    <h3>하지 말아야 할 조작</h3>
   </div>
-  <div class="video-area">
-    <!-- <video src="videos/caution.mp4" controls playsinline></video> -->
-    <span class="placeholder-icon">🎬</span>
-    <span>영상 준비 중</span>
-  </div>
-  <div class="card-body">
-    <p>고장의 원인이 되는 잘못된 조작 방법을 알려드려요. 영상을 꼭 확인해주세요!</p>
-  </div>
+  <ul class="dont-list">
+    <li><span class="x">✕</span><span>조종기를 끝까지 세게 꺾지 않기</span></li>
+    <li><span class="x">✕</span><span>멈춘 상태에서 계속 밀어붙이지 않기</span></li>
+    <li><span class="x">✕</span><span>모래 밖이나 벽 쪽으로 무리하게 이동하지 않기</span></li>
+    <li><span class="x">✕</span><span>모르는 버튼을 여러 번 반복해서 누르지 않기</span></li>
+  </ul>
 </div>
 
+<!-- ── 7. 직원 호출 안내 / FOOTER ── -->
 <footer>
-  궁금한 점은 직원에게 편하게 물어보세요 😊<br/>
-  즐거운 체험 되세요!
+  <div class="footer-main">
+    조작이 어렵거나 장비가 멈췄다면<br>
+    바로 직원에게 알려주세요.
+  </div>
+  <div class="footer-sub">
+    즐거운 체험을 위해 천천히, 안전하게 조작해주세요 🚧
+  </div>
+  <div class="footer-brand">노고 아카데미 | NOGO ACADEMY</div>
 </footer>
 
 </body>

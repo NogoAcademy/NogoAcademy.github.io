@@ -12,7 +12,8 @@
       --white: #ffffff;
       --bg: #f2f2f2;
       --text: #1a1a1a;
-      --muted: #666;
+      --blue: #60a5fa;
+      --orange: #f59e0b;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,10 +65,7 @@
       margin-bottom: 12px;
     }
 
-    header h1 em {
-      color: var(--yellow);
-      font-style: normal;
-    }
+    header h1 em { color: var(--yellow); font-style: normal; }
 
     header .subtitle {
       font-size: 13px;
@@ -82,7 +80,22 @@
       font-size: 10px;
       color: #555;
       letter-spacing: 1.5px;
-      text-transform: uppercase;
+    }
+
+    /* ── Store photo ── */
+    .store-photo {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .store-photo-caption {
+      background: #1a1a1a;
+      color: #888;
+      font-size: 11px;
+      padding: 8px 14px;
+      text-align: center;
     }
 
     /* ── Section label ── */
@@ -121,15 +134,11 @@
       gap: 10px;
     }
 
-    .warning-card-head h2 {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--black);
-    }
+    .warning-card-head h2 { font-size: 15px; font-weight: 800; color: var(--black); }
 
     .warning-card-body {
       background: var(--yellow-light);
-      padding: 16px 16px;
+      padding: 16px;
     }
 
     .warning-list {
@@ -168,7 +177,7 @@
       background: var(--black);
       margin: 0 16px 12px;
       border-radius: 14px;
-      padding: 18px 18px;
+      padding: 18px;
     }
 
     .stop-title {
@@ -185,11 +194,7 @@
       margin-bottom: 6px;
     }
 
-    .stop-card .sub {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 14px;
-    }
+    .stop-card .sub { font-size: 12px; color: #666; margin-bottom: 14px; }
 
     .stop-action {
       background: var(--yellow);
@@ -218,32 +223,11 @@
       gap: 10px;
     }
 
-    .tutorial-head h3 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--white);
-    }
+    .tutorial-head h3 { font-size: 14px; font-weight: 700; color: var(--white); }
 
-    .tutorial-note {
-      background: #1c1c1c;
-      color: #888;
-      font-size: 11px;
-      padding: 8px 16px;
-      border-bottom: 1px solid #f0f0f0;
-    }
+    .steps { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
 
-    .steps {
-      padding: 16px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
+    .step { display: flex; align-items: flex-start; gap: 12px; }
 
     .step-num {
       flex-shrink: 0;
@@ -259,13 +243,8 @@
       font-weight: 800;
     }
 
-    .step-text {
-      font-size: 14px;
-      font-weight: 600;
-      color: #333;
-      line-height: 1.5;
-      padding-top: 5px;
-    }
+    .step-text { font-size: 14px; font-weight: 600; color: #333; line-height: 1.5; padding-top: 5px; }
+    .step-sub  { font-size: 12px; color: #888; font-weight: 400; margin-top: 2px; }
 
     /* ── Ops note ── */
     .ops-note {
@@ -306,9 +285,72 @@
       white-space: nowrap;
     }
 
-    .b-yellow { background: var(--yellow); color: var(--black); }
     .b-blue   { background: #bfdbfe; color: #1e3a5f; }
-    .b-green  { background: #bbf7d0; color: #14532d; }
+    .b-orange { background: #fed7aa; color: #7c2d12; }
+
+    /* ── Joystick visual ── */
+    .stick-visual {
+      background: #1a1a1a;
+      padding: 16px 20px;
+    }
+
+    .stick-grid {
+      display: grid;
+      grid-template-columns: 1fr 52px 1fr;
+      grid-template-rows: 44px 52px 44px;
+      max-width: 280px;
+      margin: 0 auto;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .stick-center {
+      width: 48px;
+      height: 48px;
+      background: #2a2a2a;
+      border: 2px solid #444;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .sd-up, .sd-down {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      text-align: center;
+    }
+
+    .sd-left {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 4px;
+      justify-self: end;
+      padding-right: 8px;
+    }
+
+    .sd-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+      justify-self: start;
+      padding-left: 8px;
+    }
+
+    .sd-arrow-blue   { color: var(--blue);   font-size: 18px; font-weight: 800; line-height: 1; }
+    .sd-arrow-orange { color: var(--orange);  font-size: 18px; font-weight: 800; line-height: 1; }
+
+    .sd-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #ccc;
+      white-space: nowrap;
+    }
 
     /* ── Video area ── */
     .video-wrap {
@@ -336,22 +378,15 @@
       pointer-events: none;
     }
 
-    /* 영상이 있을 때 플레이스홀더 숨김 */
     .video-wrap.has-video .video-ph { display: none; }
 
     .video-ph .ph-icon  { font-size: 36px; }
     .video-ph .ph-title { font-size: 13px; font-weight: 600; color: #777; }
     .video-ph .ph-sub   { font-size: 11px; color: #555; text-align: center; padding: 0 20px; }
 
-    .card-body {
-      padding: 14px 16px;
-    }
+    .card-body { padding: 14px 16px; }
 
-    .card-body p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #444;
-    }
+    .card-body p { font-size: 14px; line-height: 1.7; color: #444; }
 
     .tip {
       margin-top: 10px;
@@ -361,6 +396,58 @@
       border-radius: 4px;
       font-size: 12px;
       color: #78350f;
+    }
+
+    .dir-list {
+      list-style: none;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .dir-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .dir-chip {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .chip-blue   { background: #dbeafe; color: #1e40af; }
+    .chip-orange { background: #ffedd5; color: #9a3412; }
+
+    /* ── Controls reference image ── */
+    .ref-img-wrap {
+      margin: 0 16px 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .ref-img-head {
+      background: var(--black);
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ref-img-wrap img {
+      width: 100%;
+      display: block;
     }
 
     /* ── Don't card ── */
@@ -418,11 +505,7 @@
       margin-bottom: 10px;
     }
 
-    .footer-sub {
-      font-size: 13px;
-      color: #888;
-      line-height: 1.6;
-    }
+    .footer-sub { font-size: 13px; color: #888; line-height: 1.6; }
 
     .footer-brand {
       margin-top: 20px;
@@ -450,6 +533,11 @@
   </div>
 </header>
 
+<!-- 체험 공간 사진 -->
+<!-- TODO: 더 선명한 사진으로 교체 예정 -->
+<img class="store-photo" src="images/store.jpg" alt="노고 아카데미 포크레인 RC 체험 공간" />
+<div class="store-photo-caption">🏗 모래 공간 안에서 포크레인 RC를 조종해요</div>
+
 <!-- ── 2. 핵심 주의사항 ── -->
 <div class="section-label">주의사항</div>
 
@@ -470,7 +558,7 @@
       </li>
       <li>
         <span class="w-num">3</span>
-        <span>모래 체험 공간 밖으로 이동하지 않기</span>
+        <span>다른 손님 포크레인과 부딪히지 않도록 천천히 조작하기</span>
       </li>
     </ul>
   </div>
@@ -492,28 +580,41 @@
     <span style="font-size:18px;">🎯</span>
     <h3>처음이라면 이것부터 해보세요</h3>
   </div>
-  <!-- TODO: 실제 조종기 기준으로 체험 순서 수정 필요 -->
-  <div class="tutorial-note">※ 아래 순서는 예시입니다. 실제 조종기 기준으로 업데이트 예정</div>
   <div class="steps">
     <div class="step">
       <div class="step-num">1</div>
-      <div class="step-text">천천히 앞으로 이동해보기</div>
+      <div class="step-text">
+        왼쪽 스틱 ←→ 으로 상체를 원하는 방향으로 돌리기
+        <div class="step-sub">스윙 — 포크레인이 제자리에서 회전해요</div>
+      </div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
-      <div class="step-text">팔을 내려 버킷을 모래 가까이에 가져가기</div>
+      <div class="step-text">
+        오른쪽 스틱 ↑ 으로 붐을 내려 버킷을 모래에 가져가기
+        <div class="step-sub">붐 내리기 — 팔 전체가 아래로 내려와요</div>
+      </div>
     </div>
     <div class="step">
       <div class="step-num">3</div>
-      <div class="step-text">버킷으로 모래를 퍼보기</div>
+      <div class="step-text">
+        오른쪽 스틱 ← 으로 버킷을 닫아 모래 담기
+        <div class="step-sub">버킷 닫기 — 바가지가 오므라들어요</div>
+      </div>
     </div>
     <div class="step">
       <div class="step-num">4</div>
-      <div class="step-text">원하는 위치로 이동하기</div>
+      <div class="step-text">
+        오른쪽 스틱 ↓ 로 붐을 올린 뒤, 왼쪽 스틱으로 스윙
+        <div class="step-sub">모래를 담은 채로 원하는 위치로 이동해요</div>
+      </div>
     </div>
     <div class="step">
       <div class="step-num">5</div>
-      <div class="step-text">버킷을 열어 모래를 쏟아보기</div>
+      <div class="step-text">
+        오른쪽 스틱 → 으로 버킷 열어 모래 쏟기
+        <div class="step-sub">버킷 열기 — 담은 모래를 쏟아요</div>
+      </div>
     </div>
   </div>
 </div>
@@ -521,18 +622,42 @@
 <!-- ── 5. 조작 방법 ── -->
 <div class="section-label">조작 방법</div>
 
-<!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
-<div class="ops-note">
-  📋 조작법은 실제 조종기 기준으로 업데이트 예정입니다.<br>
-  아래 내용은 예시이며, 매장 조종기 세팅에 맞게 변경될 수 있습니다.
-</div>
-
-<!-- 카드 1: 이동 -->
+<!-- 카드 1: 왼쪽 조이스틱 -->
 <div class="card">
   <div class="card-head">
-    <span class="badge b-yellow">왼쪽 조이스틱</span>
-    <h3>포크레인 이동</h3>
+    <span class="badge b-blue">왼쪽 조이스틱</span>
+    <h3>암 & 스윙</h3>
   </div>
+
+  <!-- 조이스틱 방향 시각화 (파란색) -->
+  <div class="stick-visual">
+    <div class="stick-grid">
+      <div></div>
+      <div class="sd-up">
+        <span class="sd-arrow-blue">↑</span>
+        <span class="sd-label">암 뻗기</span>
+      </div>
+      <div></div>
+
+      <div class="sd-left">
+        <span class="sd-label">스윙 좌</span>
+        <span class="sd-arrow-blue">←</span>
+      </div>
+      <div class="stick-center">🕹</div>
+      <div class="sd-right">
+        <span class="sd-arrow-blue">→</span>
+        <span class="sd-label">스윙 우</span>
+      </div>
+
+      <div></div>
+      <div class="sd-down">
+        <span class="sd-label">암 당기기</span>
+        <span class="sd-arrow-blue">↓</span>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
   <div class="video-wrap has-video">
     <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 src 교체 -->
     <video src="테스트.mp4" controls controlsList="nodownload" playsinline
@@ -543,55 +668,81 @@
       <span class="ph-sub">조작 영상을 받는 대로 업데이트 예정입니다.</span>
     </div>
   </div>
-  <!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
+
   <div class="card-body">
-    <p>왼쪽 조이스틱으로 포크레인을 앞뒤좌우로 이동할 수 있어요.</p>
-    <div class="tip">천천히 조작할수록 더 정밀하게 움직여요!</div>
+    <ul class="dir-list">
+      <li><span class="dir-chip chip-blue">↑ 암 뻗기</span> 버킷을 앞으로 밀어냄</li>
+      <li><span class="dir-chip chip-blue">↓ 암 당기기</span> 버킷을 몸쪽으로 당김</li>
+      <li><span class="dir-chip chip-blue">←→ 스윙</span> 상체 전체를 좌우로 회전</li>
+    </ul>
+    <div class="tip">양손을 함께 써야 더 자연스럽게 조작돼요!</div>
   </div>
 </div>
 
-<!-- 카드 2: 상체/붐 암 -->
+<!-- 카드 2: 오른쪽 조이스틱 -->
 <div class="card">
   <div class="card-head">
-    <span class="badge b-blue">오른쪽 조이스틱</span>
-    <h3>상체 회전 / 붐 암 조작</h3>
+    <span class="badge b-orange">오른쪽 조이스틱</span>
+    <h3>붐 & 버킷</h3>
   </div>
+
+  <!-- 조이스틱 방향 시각화 (오렌지색) -->
+  <div class="stick-visual">
+    <div class="stick-grid">
+      <div></div>
+      <div class="sd-up">
+        <span class="sd-arrow-orange">↑</span>
+        <span class="sd-label">붐 내리기</span>
+      </div>
+      <div></div>
+
+      <div class="sd-left">
+        <span class="sd-label">버킷 닫기</span>
+        <span class="sd-arrow-orange">←</span>
+      </div>
+      <div class="stick-center">🕹</div>
+      <div class="sd-right">
+        <span class="sd-arrow-orange">→</span>
+        <span class="sd-label">버킷 열기</span>
+      </div>
+
+      <div></div>
+      <div class="sd-down">
+        <span class="sd-label">붐 올리기</span>
+        <span class="sd-arrow-orange">↓</span>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
   <div class="video-wrap">
     <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 아래 video 활성화 + 부모에 has-video 클래스 추가 -->
-    <!-- <video src="videos/arm.mp4" controls controlsList="nodownload" playsinline></video> -->
+    <!-- <video src="videos/boom-bucket.mp4" controls controlsList="nodownload" playsinline></video> -->
     <div class="video-ph">
       <span class="ph-icon">🎬</span>
       <span class="ph-title">영상 준비 중</span>
       <span class="ph-sub">조작 영상을 받는 대로 업데이트 예정입니다.</span>
     </div>
   </div>
-  <!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
+
   <div class="card-body">
-    <p>오른쪽 조이스틱으로 상체를 회전시키고, 팔(붐 암)을 올리고 내릴 수 있어요.</p>
-    <div class="tip">회전할 때 주변에 사람이 없는지 꼭 확인하세요!</div>
+    <ul class="dir-list">
+      <li><span class="dir-chip chip-orange">↑ 붐 내리기</span> 팔 전체를 아래로 내림</li>
+      <li><span class="dir-chip chip-orange">↓ 붐 올리기</span> 팔 전체를 위로 들어올림</li>
+      <li><span class="dir-chip chip-orange">← 버킷 닫기</span> 바가지를 오므려 모래 담기</li>
+      <li><span class="dir-chip chip-orange">→ 버킷 열기</span> 바가지를 열어 모래 쏟기</li>
+    </ul>
+    <div class="tip">붐 내리기(↑)가 반대처럼 느껴질 수 있어요. 천천히 해보세요!</div>
   </div>
 </div>
 
-<!-- 카드 3: 버킷 -->
-<div class="card">
-  <div class="card-head">
-    <span class="badge b-green">버튼</span>
-    <h3>버킷(바가지) 조작</h3>
+<!-- 조종기 가이드 참고 이미지 -->
+<div class="ref-img-wrap">
+  <div class="ref-img-head">
+    🎮 조종기 전체 가이드
   </div>
-  <div class="video-wrap">
-    <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 아래 video 활성화 + 부모에 has-video 클래스 추가 -->
-    <!-- <video src="videos/bucket.mp4" controls controlsList="nodownload" playsinline></video> -->
-    <div class="video-ph">
-      <span class="ph-icon">🎬</span>
-      <span class="ph-title">영상 준비 중</span>
-      <span class="ph-sub">조작 영상을 받는 대로 업데이트 예정입니다.</span>
-    </div>
-  </div>
-  <!-- TODO: 실제 조종기 기준으로 조작 방향 수정 필요 -->
-  <div class="card-body">
-    <p>버튼으로 버킷(바가지)을 열고 닫을 수 있어요. 모래를 퍼서 원하는 곳에 쏟아보세요!</p>
-    <div class="tip">버킷이 땅에 닿은 상태에서 억지로 올리지 마세요.</div>
-  </div>
+  <!-- TODO: 더 선명한 사진으로 교체 예정 -->
+  <img src="images/controls.jpg" alt="RC 조종 가이드 컨트롤 오버뷰" />
 </div>
 
 <!-- ── 6. 하지 말아야 할 조작 ── -->
@@ -603,9 +754,9 @@
     <h3>하지 말아야 할 조작</h3>
   </div>
   <ul class="dont-list">
-    <li><span class="x">✕</span><span>조종기를 끝까지 세게 꺾지 않기</span></li>
-    <li><span class="x">✕</span><span>멈춘 상태에서 계속 밀어붙이지 않기</span></li>
-    <li><span class="x">✕</span><span>모래 밖이나 벽 쪽으로 무리하게 이동하지 않기</span></li>
+    <li><span class="x">✕</span><span>조종기 스틱을 끝까지 세게 꺾지 않기</span></li>
+    <li><span class="x">✕</span><span>포크레인이 멈춘 상태에서 계속 밀어붙이지 않기</span></li>
+    <li><span class="x">✕</span><span>다른 손님 포크레인 쪽으로 의도적으로 붙이거나 방해하지 않기</span></li>
     <li><span class="x">✕</span><span>모르는 버튼을 여러 번 반복해서 누르지 않기</span></li>
   </ul>
 </div>

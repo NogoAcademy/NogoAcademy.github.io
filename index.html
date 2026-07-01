@@ -283,6 +283,7 @@
 
     .b-blue   { background: #bfdbfe; color: #1e3a5f; }
     .b-orange { background: #fed7aa; color: #7c2d12; }
+    .b-green  { background: #bbf7d0; color: #14532d; }
 
     /* ── Joystick visual ── */
     .stick-visual {
@@ -411,6 +412,7 @@
 
     .chip-blue   { background: #dbeafe; color: #1e40af; }
     .chip-orange { background: #ffedd5; color: #9a3412; }
+    .chip-green  { background: #dcfce7; color: #166534; }
 
     /* ── Controls reference image ── */
     .ref-img-wrap {
@@ -539,7 +541,6 @@
 </header>
 
 <!-- 체험 공간 사진 -->
-<!-- TODO: 더 선명한 사진으로 교체 예정 -->
 <img class="store-photo" src="images/store.jpg" alt="노고 아카데미 포크레인 RC 체험 공간" />
 <div class="store-photo-caption">🏗 모래 공간 안에서 포크레인 RC를 조종해요</div>
 
@@ -674,9 +675,8 @@
       <div></div>
     </div>
   </div>
-  <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 no-video → has-video 로 변경하고 video 태그 추가 -->
   <div class="video-wrap has-video">
-    <video src="테스트.mp4" controls controlsList="nodownload" playsinline
+    <video src="왼쪽스틱.mp4" controls controlsList="nodownload" playsinline
            onerror="this.closest('.video-wrap').classList.replace('has-video','no-video')"></video>
   </div>
   <div class="card-body">
@@ -720,8 +720,10 @@
       <div></div>
     </div>
   </div>
-  <!-- TODO: 사장님에게 실제 조작 영상을 받은 뒤 no-video 제거하고 video 태그 추가 -->
-  <div class="video-wrap no-video"></div>
+  <div class="video-wrap has-video">
+    <video src="오른쪽스틱.mp4" controls controlsList="nodownload" playsinline
+           onerror="this.closest('.video-wrap').classList.replace('has-video','no-video')"></video>
+  </div>
   <div class="card-body">
     <ul class="dir-list">
       <li><span class="dir-chip chip-orange">↑ 붐 내리기</span> 팔 전체를 아래로 내림</li>
@@ -730,6 +732,26 @@
       <li><span class="dir-chip chip-orange">→ 버킷 열기</span> 바가지를 열어 흙 쏟기</li>
     </ul>
     <div class="tip">붐 내리기(↑)가 반대처럼 느껴질 수 있어요. 천천히 해보세요!</div>
+  </div>
+</div>
+
+<!-- 카드 3: 전진 & 후진 -->
+<div class="card">
+  <div class="card-head">
+    <span class="badge b-green">주행</span>
+    <h3>전진 & 후진</h3>
+  </div>
+  <div class="video-wrap has-video">
+    <video src="전진후진.mp4" controls controlsList="nodownload" playsinline
+           onerror="this.closest('.video-wrap').classList.replace('has-video','no-video')"></video>
+  </div>
+  <div class="card-body">
+    <ul class="dir-list">
+      <li><span class="dir-chip chip-green">전진</span> 왼쪽·오른쪽 전진 버튼 동시에 누르기</li>
+      <li><span class="dir-chip chip-green">후진</span> 왼쪽·오른쪽 후진 버튼 동시에 누르기</li>
+      <li><span class="dir-chip chip-green">방향 전환</span> 한쪽만 누르면 그 방향으로 회전</li>
+    </ul>
+    <div class="tip">조이스틱 손잡이 옆면에 버튼이 있어요. 왼쪽 버튼 2개는 왼쪽 궤도, 오른쪽 버튼 2개는 오른쪽 궤도를 움직여요.</div>
   </div>
 </div>
 
